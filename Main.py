@@ -278,7 +278,7 @@ def main(args, seed=None, baked_server_options: Optional[Dict[str, object]] = No
 
     AutoWorld.call_all(world, 'post_fill')
 
-    if world.players > 1:
+    if False:
         balance_multiworld_progression(world)
 
     logger.info(f'Beginning output...')
