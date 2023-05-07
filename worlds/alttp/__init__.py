@@ -236,6 +236,11 @@ class ALTTPWorld(World):
         self.rom_name_available_event = threading.Event()
         self.has_progressive_bows = False
         self.dungeons = {}
+
+        # terrible hotfix for dungeon fill failure
+        import Options
+        if args[0] and args[0].accessibility[args[1]] == Options.Accessibility.option_minimal:
+            args[0].accessibility[args[1]] = Options.Accessibility(Options.Accessibility.option_items)
         super(ALTTPWorld, self).__init__(*args, **kwargs)
 
     @classmethod

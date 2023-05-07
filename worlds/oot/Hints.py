@@ -570,7 +570,7 @@ def get_good_item_hint(world, checked):
     checked[location.player].add(location.name)
 
     item_text = getHint(getItemGenericName(location.item), world.clearer_hints).text
-    if location.parent_region.dungeon:
+    if getattr(location.parent_region, "dungeon", None):
         location_text = getHint(location.parent_region.dungeon.name, world.clearer_hints).text
         return (GossipText('#%s# hoards #%s#.' % (attach_name(location_text, location, world), attach_name(item_text, location.item, world)), 
             ['Green', 'Red']), location)
