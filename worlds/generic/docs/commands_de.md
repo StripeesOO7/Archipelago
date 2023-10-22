@@ -1,108 +1,128 @@
-# Helpful Commands
+# Hilfereiche Befehle
 
-Commands are split into two types: client commands and server commands. Client commands are commands which are executed
-by the client and do not affect the Archipelago remote session. Server commands are commands which are executed by the
-Archipelago server and affect the Archipelago session or otherwise provide feedback from the server.
+Befehle (Commands) werden in Zwei Kategorien aufgeteilt: Client- und Serverbefehle. Clientbefehle werden vom
+Client/Spiel lokal ausgeführt und haben keinen einfluss auf die Archipelago Sitzung. Serverbefehle hingegen werden
+serverseitig von Archipelago ausgeführt und haben einen einfluss auf die aktuelle Sitzung oder stellen zusätzliche
+Informationen bereit.
 
-In clients which have their own commands the commands are typically prepended by a forward slash: `/`. 
+Clientbefehle werden lokal, auch ohne Verbindung zum Server, innerhalb des Clients ausgeführt. Clientspezifische/Lokale
+Befehle werden mit einem forward slash `/` begonnen. 
 
-Server commands are always submitted to the server prepended with an exclamation point: `!`. <br/>
+Serverbefehle werden immer an den Server gesendet und immer mit einem Ausrufezeichen `!` begonnen. <br/>
 
-# Server Commands
+# Serverbefehle
 
-Server commands may be executed by any client which allows for sending text chat to the Archipelago server. If your
-client does not allow for sending chat then you may connect to your game slot with the TextClient which comes with the
-Archipelago installation. In order to execute the command you need to merely send a text message with the command,
-including the exclamation point.
+Serverbefehle können von jedem Client/Spiel gesendet werden, welcher es erlaubt Textnachrichten an den Server zu senden.
+Wenn der Client/das Spiel keine möglichkeit bietet Textnachrichten and er Server zu senden empfiehlt es sich sich
+zusätzlich über den in der Archipelago installation enthaltenen TextClient mit seinen Slotnamen Anzumelden. Um einen
+Befehl anzuschicken reicht es aus diesen, beginnent mit einem Ausrufezeichen, als Textnachricht abzuschicken.
 
-### General
-- `!help` Returns a listing of available commands.
-- `!license` Returns the software licensing information.
-- `!options` Returns the current server options, including password in plaintext.
-- `!players` Returns info about the currently connected and non-connected players.
-- `!status` Returns information about the connection status and check completion numbers for all players in the current room. <br /> (Optionally mention a Tag name and get information on who has that Tag. For example: !status DeathLink)
-
-
-### Utilities
-- `!countdown <number of seconds>` Starts a countdown using the given seconds value. Useful for synchronizing starts.
-  Defaults to 10 seconds if no argument is provided.
-- `!alias <alias>` Sets your alias, which allows you to use commands with the alias rather than your provided name.
-- `!admin <command>` Executes a command as if you typed it into the server console. Remote administration must be
-  enabled.
-
-### Information
-- `!remaining` Lists the items remaining in your game, but not where they are or who they go to.
-- `!missing` Lists the location checks you are missing from the server's perspective.
-- `!checked` Lists all the location checks you've done from the server's perspective.
-
-### Hints
-- `!hint` Lists all hints relevant to your world, the number of points you have for hints, and how much a hint costs.
-- `!hint <item name>` Tells you the game world and location your item is in, uses points earned from completing locations.
-- `!hint_location <location>` Tells you what item is in a specific location, uses points earned from completing locations.
-
-### Collect/Release
-- `!collect` Grants you all the remaining items for your world by collecting them from all games. Typically used after 
-goal completion.
-- `!release` Releases all items contained in your world to other worlds. Typically, done automatically by the sever, but
-can be configured to allow/require manual usage of this command.
-
-### Cheats
-- `!getitem <item>` Cheats an item to the currently connected slot, if it is enabled in the server.
+### Allgemeine Befehle
+- `!help` Listet alle verfügbaren Befehle auf.
+- `!license` Listet die Software Lizensinformation auf.
+- `!options` Listet die aktuellen Serveroptionen, inclusive dem serverpasswort im Klartext, auf.
+- `!players` Listet informationen über alle nicht-/verbundenen Spieler auf.
+- `!status` Listet Informationen über den den Verbindungsstatus und die Anzahl der bisher erledigten Checks für jeden
+  Spieler auf. <br /> (Optional kann ein Tag angegeben werden und für alle Speielr wird dann aufgelistet ob sie den
+  jeweiligen Tag zuordnet werden konnten. Bsp: `!status DeathLink`)
 
 
-## Host only (on Archipelago.gg or in your server console)
+### Nützliches
+- `!countdown <number of seconds>` Startete einen Countdown startend beid er angegebenen Zahl in Sekunden. Nützlich wenn
+  man koordiniert gleichzeitig starten möchte. Standardwert ist 10 Sekunden wenn kein Wert mitgegeben wird.
+- `!alias <alias>` Setzt einen Alias, sodass es möglich ist Befehle mit dieses Alias anstatt dem angegebene Slotnamen
+  auszuführen.
+- `!admin <command>` Führt einen Befehl so aus als wäre er direkt in der Server-Befehlszeile eingegeben worden.
+  Fernadministrierung muss vorher aktiviert worden sein.
 
-### General
-- `/help` Returns a list of commands available in the console.
-- `/license` Returns the software licensing information.
-- `/options` Lists the server's current options, including password in plaintext.
-- `/players` List currently connected players.
-- `/save` Saves the state of the current multiworld. Note that the server auto-saves on a minute basis.
-- `/exit` Shutdown the server
+### Informationen
+- `!remaining` Listet die Items auf die noch in deiner Welt übrig sind, jedoch nicht wo diese zu finden sind und für
+  welchen Speieler diese sind.
+- `!missing` Listet die Locations, aus Sicht des Servers, auf die noch nicht in deiner Welt abgearbeitet/gechecked
+  wurden.
+- `!checked` Listet die Locations, aus Sicht des Servers, auf die bereits in deiner Welt abgearbeitet/gechecked wurden.
 
-### Utilities
-- `/countdown <number of seconds>` Starts a countdown sent to all players via text chat. Defaults to 10 seconds if no
-  argument is provided.
-- `/option <option name> <option value>` Set a server option. For a list of options, use the `/options` command.
-- `/alias <player name> <alias name>` Assign a player an alias, allowing you to reference the player by the alias in commands.
-
+### Hinweise
+- `!hint` Listet alle bereits aufgedeckten Hinweise für Items die in deiner Welt liegen auf, sowie die aktuelle Anzahl
+  an Hinweispunkten und wie viel ein Hinweis kostet.
+- `!hint <item name>` Zeigt die die Welt und den Ort innerhalb dieser Welt an in der das gesucht Item liegt. Verbraucht
+  Punkte die durch das abarbeiten/checken von Locations "erarbeitet" wurden.
+- `!hint_location <location>` Zeigt das Item auf welches in der angefragten Location zu finden sit. Verbraucht Punkte
+  die durch das abarbeiten/checken von Locations "erarbeitet" wurden.
 
 ### Collect/Release
-- `/collect <player name>` Send out any items remaining in the multiworld belonging to the given player.
-- `/release <player name>` Sends out all remaining items in this world regardless of settings and game completion status.
-- `/allow_release <player name>` Allows the given player to use the `!release` command.
-- `/forbid_release <player name>` Prevents the given player from using the `!release` command.
+- `!collect` Sammelt alle Items die zu deinem Spiel/deiner Welt gehören aus allen anderen Welten ein. Wird normalerweise
+  nach erreichen des Ziels für das eigene Spiel benutzt.
+- `!release` Sendet alle nicht eingesammelte Items aus deiner Welt zu den jeweiligen Spielern/Welten. Wird normalerweise
+  nach erreichen des Ziels für das eigene Spiel automatisch vom Server ausgeführt, kann jedoch auch angepast werden.
 
 ### Cheats
-- `/send <player name> <item name>` Grants the given player the specified item.
-- `/send_multiple <amount> <player name> <item name>` Grants the given player the stated amount of the specified item.
-- `/send_location <player name> <location name>` Send out the given location for the specified player as if the player checked it
-- `/hint <player name> <item or location name>` Send out a hint for the given item or location for the specified player.
+- `!getitem <item>` Erzeugt ein gecheatetes extra Item für den ausführenden Spieler, falls dies auf dem Server erlaubt
+  wurde.
+
+
+## Host only (auf Archipelago.gg oder innerhalb der eigenen Server-Befehlszeile)
+
+### Allgemein
+- `/help` Listet alle verfügbaren Befehle auf.
+- `/license` Listet die Software Lizensinformation auf.
+- `/options` Listet die aktuellen Serveroptionen, inclusive dem serverpasswort im Klartext, auf.
+- `/players` Listet informationen über alle nicht-/verbundenen Spieler auf.
+- `/save` Speichert den aktuellen Stand der Multiworld-Sitzung. Hinweis: der Server speichert automatisch jede Minute.
+- `/exit` Fahre den Server herunter.
+
+### Nützliches
+- `/countdown <number of seconds>` Startete einen Countdown startend beid er angegebenen Zahl in Sekunden. Nützlich wenn
+  man koordiniert gleichzeitig starten möchte. Standardwert ist 10 Sekunden wenn kein Wert mitgegeben wird.
+- `/option <option name> <option value>` Änderet eine Serveroption. Für eine Liste aller Optionen führe den Befehl
+  `/options` aus.
+- `/alias <player name> <alias name>` Weise einem Slotnamen eine Alias zu. Ermöglicht es diesen Alias anstatt des
+  Slotnamens für Befehle zu verwenden.
+
+### Collect/Release
+- `/collect <player name>` Sammelt alle noch nicht gefundenen Items aus allen Welten ein die zu der Welt gehören. 
+- `/release <player name>` Sendet alle noch nicht eingesammelten Items aus der angegeben Welt in die jeweils zugehörige
+  Welt. Dies pasiert unabhängig von Server Einstellungen und ob das Ziel erreicht wurde oder nicht
+- `/allow_release <player name>` Erlaubt es dem angegebenen Spieler den `!release` Befehl zu benutzen.
+- `/forbid_release <player name>` Verbietet es dem angegeben Spieler den `!release` Befehl zu benutzen.
+
+### Cheats
+- `/send <player name> <item name>` Erzeugt eine zusätzliche Version/Instanz des angegeben Items und sendet es an den
+  angegeben Spieler.
+- `/send_multiple <amount> <player name> <item name>` Erzeugt die angegeben Menge an zusätzlichen Versionen/Instanzen
+  des angegeben Items und sendet es an den angegeben Spieler.
+- `/send_location <player name> <location name>` Sendet das Item in der angegben Location aus der angegeben Welt zum
+  Spieler/zur Welt in die das item eigentlich gehört als wäre es nornmal eingesammelt worden.
+- `/hint <player name> <item or location name>` Zeigt einen Hinweis für das Item/die Location der angegeben Welt. Dieser
+  Hinweis kostet keine Punkte.
 
 <br/> <br/>
 
-# Local Commands
+# Lokale Befehle
 
-This a list of client commands which may be available to you through your Archipelago client. You can
-execute these commands in your client window.
+Dies ist eine Liste an lokalen Befehlen welche dir, abhängig vom verwendeten Archipelago Client, zur verfügung stehen
+können. Diese Befehle können innerhlab des Clients (ohne Serververbindung) direkt ausgeführt werden.
 
-The following commands are available in the clients that use the CommonClient, for example: TextClient, SNIClient, etc.
+Die folgende Liste an Befehlen steht dir zur verfügung wenn der Clientt auf dem "CommonClient" aufbaut. Beispiele dafür
+sind: TextClient, SNIClient, etc.
 
-- `/connect <address:port>` Connect to the multiworld server at the given address.
-- `/disconnect` Disconnects you from your current session.
-- `/help` Returns a list of available commands.
-- `/license` Returns the software licensing information.
-- `/received` Displays all the items you have received from all players, including yourself.
-- `/missing` Displays all the locations along with their current status (checked/missing).
-- `/items` Lists all the item names for the current game.
-- `/locations` Lists all the location names for the current game.
-- `/ready` Sends ready status to the server.
-- Typing anything that doesn't start with `/` will broadcast a message to all players.
+- `/connect <address:port>` Verbinde den Client mit dem Multiworld Server unter der angegeben Adressse.
+- `/disconnect` Trenne die Verbindung zur aktuellen Multiworldsitzung.
+- `/help` Listet alle verfügbaren Befehle auf.
+- `/license` Listet die Software Lizensinformation auf.
+- `/received` Listet alle Items auf die du von anderen Spielen gesendet bekommen oder selbst gefunden hast.
+- `/missing` Listet die Locations, aus Sicht des Servers, auf die noch nicht in deiner Welt abgearbeitet/gechecked
+  wurden.
+- `/items` Listet die Namen aller Items für das aktuelle Spiel auf.
+- `/locations`  Listet die Namen aller Locations für das aktuelle Spiel auf.
+- `/ready` Sendet einen Status an den Server, dass der Spieler "bereit" ist.
+- Alle Nachrichten die nicht mit einem `/` beginnen werden als normale Nachrichten an alle Spieler gesendet.
 
 ## SNIClient Only
 
-The following command is only available when using the SNIClient for SNES based games.
+die folgenden Befehle stehen nur innerhalb des `SNIClient` für SNES Spiele zu verfügung.
 
-- `/snes` Attempts to connect to your SNES device via SNI.
-- `/snes_close` Closes the current SNES connection.
-- `/slow_mode` Toggles on or off slow mode, which limits the rate in which you receive items.
+- `/snes` Versucht eine verbindung zum SNES über SNI aufzubauen.
+- `/snes_close` Schließt die aktuelle Verbindung zum SNES.
+- `/slow_mode` Schaltet den "slow mode" and oder aus, welcher die geschwindigkeit limitiert mit der Items empfangen
+  werden.
